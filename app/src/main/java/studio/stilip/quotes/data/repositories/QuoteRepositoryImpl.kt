@@ -1,11 +1,15 @@
 package studio.stilip.quotes.data.repositories
 
 import io.reactivex.Single
+import studio.stilip.quotes.data.api.RetrofitServiceQuote
+import studio.stilip.quotes.data.dto.toDomain
 import studio.stilip.quotes.domain.entities.Quote
 import studio.stilip.quotes.domain.repository_interface.QuoteRepository
 import javax.inject.Inject
 
-class QuoteRepositoryImpl @Inject constructor() : QuoteRepository {
+class QuoteRepositoryImpl @Inject constructor(
+    private val retrofitService: RetrofitServiceQuote
+) : QuoteRepository {
 
     val fake = listOf(
         Quote(
@@ -38,10 +42,11 @@ class QuoteRepositoryImpl @Inject constructor() : QuoteRepository {
     )
 
     override fun getQuotesWithOffset(offset: Int): Single<List<Quote>> {
-        return Single.just(fake)
+        return retrofitService.getQuotesWithOffset(offset.toString())
+            .map { list -> list.map { q -> q.toDomain() } }
     }
 
     override fun getQuoteById(id: Int): Single<Quote> {
-        return Single.just(fake.first { quote -> quote.id == id })
+        return retrofitService.getQuoteById(id.toString())
     }
 }

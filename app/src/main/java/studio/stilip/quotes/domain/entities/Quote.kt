@@ -1,5 +1,8 @@
 package studio.stilip.quotes.domain.entities
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Quote(
     val id: Int,
     val createdAt: String,
