@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Quotes"
         tools:targetApi="31">
         <activity
-            android:name=".QuoteDetailingActivity"
+            android:name=".app.quote_detailing.QuoteDetailingActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
