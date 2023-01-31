@@ -2,13 +2,14 @@ package studio.stilip.quotes.app.quote_detailing
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
+import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import studio.stilip.quotes.R
-import studio.stilip.quotes.databinding.ActivityMainBinding
 import studio.stilip.quotes.databinding.ActivityQuoteDetailingBinding
 
 @AndroidEntryPoint
@@ -31,8 +32,40 @@ class QuoteDetailingActivity : AppCompatActivity(R.layout.activity_quote_detaili
             with(binding) {
                 textQuote.text = quote.text
                 date.text = quote.createdAt
+                val tags = quote.tagList
+                val colors = quote.colors
+                var i = 0
+
+                for (tag in tags) {
+                    val chip = Chip(this@QuoteDetailingActivity)
+                    chip.text = tag
+                    if (i < colors.count()) {
+                        val color = getColorFromText(colors[i])
+                        chip.setTextColor(color)
+                    }
+
+                    groupTags.addView(chip)
+                    i += 1
+                }
             }
         }, {})
+    }
+
+    private fun getColorFromText(colorName: String): Int {
+        return when (colorName) {
+            "BLACK" -> Color.BLACK
+            "BLUE" -> Color.BLUE
+            "CYAN" -> Color.CYAN
+            "DKGRAY" -> Color.DKGRAY
+            "GRAY" -> Color.GRAY
+            "LTGRAY" -> Color.LTGRAY
+            "MAGENTA" -> Color.MAGENTA
+            "RED" -> Color.RED
+            "TRANSPARENT" -> Color.TRANSPARENT
+            "WHITE" -> Color.WHITE
+            "YELLOW" -> Color.YELLOW
+            else -> Color.GREEN
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
