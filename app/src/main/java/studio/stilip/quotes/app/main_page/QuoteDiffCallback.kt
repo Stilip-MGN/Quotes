@@ -1,4 +1,4 @@
-package studio.stilip.quotes.app
+package studio.stilip.quotes.app.main_page
 
 import androidx.recyclerview.widget.DiffUtil
 import studio.stilip.quotes.domain.entities.Quote

@@ -1,4 +1,4 @@
-package studio.stilip.quotes.app
+package studio.stilip.quotes.app.main_page
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

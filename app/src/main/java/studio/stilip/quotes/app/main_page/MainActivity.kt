@@ -1,4 +1,4 @@
-package studio.stilip.quotes.app
+package studio.stilip.quotes.app.main_page
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
