@@ -5,11 +5,11 @@
     android:id="@+id/card_view_quote"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="left"
-    android:layout_marginStart="10dp"
+    android:layout_gravity="right"
+    android:layout_marginStart="80dp"
     android:layout_marginTop="10dp"
-    android:layout_marginEnd="80dp"
-    android:backgroundTint="#CFD9FB"
+    android:layout_marginEnd="10dp"
+    android:backgroundTint="#8AFFBC"
     app:cardCornerRadius="10dp"
     tools:ignore="RtlHardcoded,RtlSymmetry">
 
