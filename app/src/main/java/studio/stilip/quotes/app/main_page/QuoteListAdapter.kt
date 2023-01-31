@@ -21,7 +21,7 @@ class QuoteListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            1 -> QuoteListViewHolder(
+            0 -> QuoteListViewHolder(
                 CardQuoteBinding.inflate(LayoutInflater.from(parent.context), parent, false),
                 onItemClicked,
             )
@@ -34,7 +34,7 @@ class QuoteListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
-            1 -> (holder as QuoteListViewHolder).bind(getItem(position))
+            0 -> (holder as QuoteListViewHolder).bind(getItem(position))
             else -> (holder as QuoteUserListViewHolder).bind(getItem(position))
         }
     }
