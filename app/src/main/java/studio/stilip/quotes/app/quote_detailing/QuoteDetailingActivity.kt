@@ -39,11 +39,13 @@ class QuoteDetailingActivity : AppCompatActivity(R.layout.activity_quote_detaili
                 for (tag in tags) {
                     val chip = Chip(this@QuoteDetailingActivity)
                     chip.text = tag
-                    if (i < colors.count()) {
-                        val color = getColorFromText(colors[i])
-                        chip.setTextColor(color)
-                    }
 
+                    val color = if (i < colors.count())
+                        getColorFromText(colors[i])
+                    else
+                        getColorFromText("GRAY")
+
+                    chip.setTextColor(color)
                     groupTags.addView(chip)
                     i += 1
                 }
@@ -57,14 +59,14 @@ class QuoteDetailingActivity : AppCompatActivity(R.layout.activity_quote_detaili
             "BLUE" -> Color.BLUE
             "CYAN" -> Color.CYAN
             "DKGRAY" -> Color.DKGRAY
-            "GRAY" -> Color.GRAY
+            "GREEN" -> Color.GREEN
             "LTGRAY" -> Color.LTGRAY
             "MAGENTA" -> Color.MAGENTA
             "RED" -> Color.RED
             "TRANSPARENT" -> Color.TRANSPARENT
             "WHITE" -> Color.WHITE
             "YELLOW" -> Color.YELLOW
-            else -> Color.GREEN
+            else -> Color.GRAY
         }
     }
 
