@@ -14,14 +14,16 @@ class QuotesViewModel @Inject constructor(
     private val getQuotesWithOffset: GetQuotesWithOffsetUseCase
 ) : ViewModel() {
 
-    val quotes = BehaviorSubject.create<List<Quote>>().also { getQuotes(0) }
+    val quotes = BehaviorSubject.create<List<Quote>>().also { getQuotes(1) }
 
     fun getQuotes(offset: Int) {
         getQuotesWithOffset(offset)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ list ->
-                quotes.onNext(list)
+                val old = quotes.value ?: emptyList()
+                val res: List<Quote> = old.plus(list)
+                quotes.onNext(res)
             }, {
                 println(it.message)
             })

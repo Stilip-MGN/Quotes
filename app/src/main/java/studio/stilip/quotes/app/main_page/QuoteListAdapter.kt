@@ -10,6 +10,7 @@ import studio.stilip.quotes.domain.entities.Quote
 
 class QuoteListAdapter(
     private val onItemClicked: (Int) -> Unit,
+    private val pagination: (Int) -> Unit,
 ) : ListAdapter<Quote, RecyclerView.ViewHolder>(QuoteDiffCallback) {
 
     override fun getItemViewType(position: Int): Int {
@@ -33,6 +34,8 @@ class QuoteListAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (position + 1 == itemCount)                                                        //когда отобразиться последний элемент
+            pagination(itemCount + 1)                                                         //пойдет запрос к бэку
         when (holder.itemViewType) {
             0 -> (holder as QuoteListViewHolder).bind(getItem(position))
             else -> (holder as QuoteUserListViewHolder).bind(getItem(position))
