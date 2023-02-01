@@ -19,16 +19,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter = QuoteListAdapter { id ->
+        val adapter = QuoteListAdapter({ id ->
             startActivity(QuoteDetailingActivity.createIntent(this, id))
-        }
+        }, { offset ->
+            viewModel.getQuotes(offset)
+        })
 
         viewModel.quotes.subscribe({ quotes ->
             adapter.submitList(quotes)
         }, {
-
+            println(it.message)
         })
-
 
         with(binding) {
             recQuotes.adapter = adapter
